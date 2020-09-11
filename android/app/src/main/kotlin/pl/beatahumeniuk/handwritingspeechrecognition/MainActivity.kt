@@ -1,4 +1,4 @@
-package com.sergiofraile.handwritten_number_recognizer
+package pl.beatahumeniuk.handwritingspeechrecognition
 
 import android.os.Bundle
 

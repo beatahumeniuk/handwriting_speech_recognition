@@ -8,6 +8,12 @@ const Color kBlackBrushColor = Colors.black;
 const bool kIsAntiAlias = true;
 const Color kBrushBlack = Colors.black;
 const Color kBrushWhite = Colors.white;
+const Color kBarColor = Colors.blue;
+const Color kBarBackgroundColor = Colors.transparent;
+const double kChartBarWidth = 22;
+const String kWaitingForInputHeaderString = 'Wpisz cyfrę w ramce';
+const String kGuessingInputString = 'Wpisany numer to:';
+
 
 final Paint kDrawingPaint = Paint()
   ..strokeCap = StrokeCap.square

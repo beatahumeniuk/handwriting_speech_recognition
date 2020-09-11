@@ -1,29 +1,39 @@
 PODS:
   - Flutter (1.0.0)
+  - speech_to_text (0.0.1):
+    - Flutter
+    - Try
   - TensorFlowLite (1.13.1)
   - tflite (1.0.4):
     - Flutter
     - TensorFlowLite
+  - Try (2.1.1)
 
 DEPENDENCIES:
   - Flutter (from `.symlinks/flutter/ios`)
+  - speech_to_text (from `.symlinks/plugins/speech_to_text/ios`)
   - tflite (from `.symlinks/plugins/tflite/ios`)
 
 SPEC REPOS:
   trunk:
     - TensorFlowLite
+    - Try
 
 EXTERNAL SOURCES:
   Flutter:
     :path: ".symlinks/flutter/ios"
+  speech_to_text:
+    :path: ".symlinks/plugins/speech_to_text/ios"
   tflite:
     :path: ".symlinks/plugins/tflite/ios"
 
 SPEC CHECKSUMS:
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  speech_to_text: b43a7d99aef037bd758ed8e45d79bbac035d2dfe
   TensorFlowLite: 8b9dc4eb32eac0f8cb660c66bca7604da56dcc5a
   tflite: a6911f4ac99be9c73c1dcffb1a5d54b3c56087a8
+  Try: 5ef669ae832617b3cee58cb2c6f99fb767a4ff96
 
 PODFILE CHECKSUM: 10ae9c18d12c9ffc2275c9a159a3b1e281990db0
 
-COCOAPODS: 1.8.1
+COCOAPODS: 1.9.1

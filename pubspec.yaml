@@ -1,5 +1,5 @@
-name: handwritten_number_recognizer
-description: A handwritten number recognizer built with Flutter and Tensorflow.
+name: handwritingspeechrecognition
+description: Techniki Multimedialne PW(OKNO)-projekt zaliczeniowy
 
 version: 1.0.0+1
 
@@ -13,6 +13,9 @@ dependencies:
   cupertino_icons: ^0.1.2
   tflite: ^1.0.4
   image: ^2.1.4
+  speech_to_text: ^2.3.0
+  highlight_text: ^0.7.2
+  avatar_glow: ^1.2.0
 
 dev_dependencies:
   flutter_test:

@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:handwritten_number_recognizer/constants.dart';
-import 'package:handwritten_number_recognizer/drawing_painter.dart';
-import 'package:handwritten_number_recognizer/brain.dart';
+import 'package:handwritingspeechrecognition/constants.dart';
+import 'package:handwritingspeechrecognition/drawing_painter.dart';
+import 'package:handwritingspeechrecognition/brain.dart';
 
-class RecognizerScreen extends StatefulWidget {
-  RecognizerScreen({Key key, this.title}) : super(key: key);
+class HandwritingPage extends StatefulWidget {
+  HandwritingPage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _RecognizerScreen createState() => _RecognizerScreen();
+  HandwritingPageState createState() => HandwritingPageState();
 }
 
-class _RecognizerScreen extends State<RecognizerScreen> {
+class HandwritingPageState extends State<HandwritingPage> {
   List<Offset> points = List();
   AppBrain brain = AppBrain();
+  String number = "";
 
   void _cleanDrawing() {
     setState(() {
@@ -31,8 +32,10 @@ class _RecognizerScreen extends State<RecognizerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 100, 100, 100),
       appBar: AppBar(
-        title: Text(widget.title),
+        backgroundColor: Color.fromARGB(255, 50, 50, 50),
+        title: Text("Rozpoznawanie pisma"),
       ),
       body: Container(
         child: Column(
@@ -42,16 +45,28 @@ class _RecognizerScreen extends State<RecognizerScreen> {
               flex: 1,
               child: Container(
                 padding: EdgeInsets.all(16),
-                color: Colors.red,
                 alignment: Alignment.center,
-                child: Text('Header'),
+                child: Text(
+                  "Wpisz cyfrę",
+                  style: TextStyle(
+                      fontSize: 25.0,
+                      color: Color.fromARGB(255, 220, 220, 220),
+                      fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(
+                            blurRadius: 2.0,
+                            color: Color.fromARGB(255, 25, 25, 25),
+                            offset: Offset(1.0, 1.0))
+                      ]),
+                ),
               ),
             ),
             Container(
               decoration: new BoxDecoration(
+                color: Color.fromARGB(255, 220, 220, 220),
                 border: new Border.all(
                   width: 3.0,
-                  color: Colors.blue,
+                  color: Theme.of(context).primaryColor,
                 ),
               ),
               child: Builder(
@@ -73,9 +88,12 @@ class _RecognizerScreen extends State<RecognizerScreen> {
                     },
                     onPanEnd: (details) async {
                       points.add(null);
-                      List predictions = await brain.processCanvasPoints(points);
-                      print(predictions);
-                      setState(() {});
+                      List predictions =
+                          await brain.processCanvasPoints(points);
+                      number = predictions.first['label'];
+                      setState(() {
+//                        _buildBarChartInfo(recognitions: predictions);
+                      });
                     },
                     child: ClipRect(
                       child: CustomPaint(
@@ -93,9 +111,20 @@ class _RecognizerScreen extends State<RecognizerScreen> {
               flex: 1,
               child: Container(
                 padding: EdgeInsets.all(16),
-                color: Colors.blue,
                 alignment: Alignment.center,
-                child: Text('Footer'),
+                child: Text(
+                  "Wpisana cyfra to: " + number,
+                  style: TextStyle(
+                      fontSize: 25.0,
+                      color: Color.fromARGB(255, 220, 220, 220),
+                      fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(
+                            blurRadius: 2.0,
+                            color: Color.fromARGB(255, 25, 25, 25),
+                            offset: Offset(1.0, 1.0))
+                      ]),
+                ),
               ),
             ),
           ],
@@ -104,9 +133,10 @@ class _RecognizerScreen extends State<RecognizerScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _cleanDrawing();
+          number = "";
         },
-        tooltip: 'Clean',
-        child: Icon(Icons.delete),
+        tooltip: 'Wyczyść',
+        child: Icon(Icons.clear),
       ),
     );
   }

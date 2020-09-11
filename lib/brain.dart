@@ -6,7 +6,7 @@ import 'dart:ui' hide Image;
 import 'package:flutter/services.dart';
 import 'package:image/image.dart' as im;
 import 'package:tflite/tflite.dart';
-import 'package:handwritten_number_recognizer/constants.dart';
+import 'package:handwritingspeechrecognition/constants.dart';
 
 class AppBrain {
 

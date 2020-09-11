@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:handwritten_number_recognizer/constants.dart';
+import 'package:handwritingspeechrecognition/constants.dart';
 
 class DrawingPainter extends CustomPainter {
   DrawingPainter({this.offsetPoints});
