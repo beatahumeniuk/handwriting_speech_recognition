@@ -48,7 +48,7 @@ class HandwritingPageState extends State<HandwritingPage> {
                 padding: EdgeInsets.all(16),
                 alignment: Alignment.center,
                 child: Text(
-                  "Wpisz cyfrę",
+                  "Wpisz literę lub cyfrę",
                   style: TextStyle(
                       fontSize: 25.0,
                       color: Color.fromARGB(255, 220, 220, 220),
@@ -113,7 +113,7 @@ class HandwritingPageState extends State<HandwritingPage> {
                 padding: EdgeInsets.all(16),
                 alignment: Alignment.center,
                 child: Text(
-                  "Wpisana cyfra to: " + number,
+                  "Wpisany znak to: " + number,
                   style: TextStyle(
                       fontSize: 25.0,
                       color: Color.fromARGB(255, 220, 220, 220),

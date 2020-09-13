@@ -78,7 +78,7 @@ class SpeechPageState extends State<SpeechPage> {
                   padding: EdgeInsets.all(16),
                   alignment: Alignment.center,
                   child: Text(
-                    "Skuteczność algorytmu: " + (_confidence * 100.0).round().toString() + "%",
+                    "Skuteczność algorytmu: " + (_confidence * 100).round().toString() + "%",
                     style: TextStyle(
                         fontSize: 16.0,
                         color: Color.fromARGB(255, 220, 220, 220),
@@ -109,6 +109,9 @@ class SpeechPageState extends State<SpeechPage> {
         _speech.listen(
           onResult: (val) => setState(() {
             _text = val.recognizedWords;
+            if (val.hasConfidenceRating && val.confidence > 0) {
+              _confidence = val.confidence;
+            }
           }),
         );
       }
