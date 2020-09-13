@@ -17,6 +17,7 @@ class SpeechPageState extends State<SpeechPage> {
   stt.SpeechToText _speech;
   bool isListening = false;
   String _text = 'Naciśnij przycisk i powiedz coś...';
+  double _confidence = 0.0;
 
   @override
   void initState() {
@@ -52,27 +53,48 @@ class SpeechPageState extends State<SpeechPage> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        reverse: true,
-        child: Container(
+      body: Container(
           padding: const EdgeInsets.fromLTRB(30.0, 150.0, 30.0, 150.0),
-          child: TextHighlight(
-            text: _text,
-            words: _highlights,
-            textAlign: TextAlign.center,
-            textStyle: const  TextStyle(
-              fontSize: 25.0,
-              color: Color.fromARGB(255, 220, 220, 220),
-              fontWeight: FontWeight.bold,
-              shadows: [
-                Shadow(
-                    blurRadius: 2.0,
-                    color: Color.fromARGB(255, 25, 25, 25),
-                    offset: Offset(1.0, 1.0))
-              ]),
-          ),
+          child: Column(
+            children: [
+              TextHighlight(
+                text: _text,
+                words: _highlights,
+                textAlign: TextAlign.center,
+                textStyle: const  TextStyle(
+                    fontSize: 25.0,
+                    color: Color.fromARGB(255, 220, 220, 220),
+                    fontWeight: FontWeight.bold,
+                    shadows: [
+                      Shadow(
+                          blurRadius: 2.0,
+                          color: Color.fromARGB(255, 25, 25, 25),
+                          offset: Offset(1.0, 1.0))
+                    ]),
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Skuteczność algorytmu: " + (_confidence * 100.0).round().toString() + "%",
+                    style: TextStyle(
+                        fontSize: 16.0,
+                        color: Color.fromARGB(255, 220, 220, 220),
+                        fontWeight: FontWeight.bold,
+                        shadows: [
+                          Shadow(
+                              blurRadius: 2.0,
+                              color: Color.fromARGB(255, 25, 25, 25),
+                              offset: Offset(1.0, 1.0))
+                        ]),
+                  ),
+                ),
+              ),
+            ],
+          )
         ),
-      ),
     );
   }
 

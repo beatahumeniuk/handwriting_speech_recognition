@@ -16,6 +16,7 @@ class HandwritingPageState extends State<HandwritingPage> {
   List<Offset> points = List();
   AppBrain brain = AppBrain();
   String number = "";
+  double effectiveness = 0.0;
 
   void _cleanDrawing() {
     setState(() {
@@ -91,9 +92,8 @@ class HandwritingPageState extends State<HandwritingPage> {
                       List predictions =
                           await brain.processCanvasPoints(points);
                       number = predictions.first['label'];
-                      setState(() {
-//                        _buildBarChartInfo(recognitions: predictions);
-                      });
+                      effectiveness = predictions.first['confidence'];
+                      setState(() {});
                     },
                     child: ClipRect(
                       child: CustomPaint(
@@ -127,6 +127,26 @@ class HandwritingPageState extends State<HandwritingPage> {
                 ),
               ),
             ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                padding: EdgeInsets.all(16),
+                alignment: Alignment.center,
+                child: Text(
+                  "Skuteczność algorytmu: " + (effectiveness * 100).round().toString() + "%",
+                  style: TextStyle(
+                      fontSize: 16.0,
+                      color: Color.fromARGB(255, 220, 220, 220),
+                      fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(
+                            blurRadius: 2.0,
+                            color: Color.fromARGB(255, 25, 25, 25),
+                            offset: Offset(1.0, 1.0))
+                      ]),
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -134,6 +154,7 @@ class HandwritingPageState extends State<HandwritingPage> {
         onPressed: () {
           _cleanDrawing();
           number = "";
+          effectiveness = 0.0;
         },
         tooltip: 'Wyczyść',
         child: Icon(Icons.clear),
